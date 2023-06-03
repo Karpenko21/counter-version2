@@ -1,0 +1,129 @@
+
+.counter {
+    border: 3px solid white;
+    width: 300px;
+    height: 300px;
+    margin: 50px;
+    color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.panel  {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    justify-items: center;
+    border: 2px solid white;
+    color: white;
+    border-radius: 10px;
+    width: 250px;
+    height: 190px;
+    margin: 20px;
+
+}
+
+.value {
+    padding: 3px;
+    font-size: 90px;
+}
+.errorWarning {
+    padding: 3px;
+    font-size: 30px;
+    color: darkmagenta;
+    font-weight: 600;
+}
+.messageAfterError {
+    padding: 3px;
+    font-size: 20px;
+    color: darkblue;
+    font-weight: 500;
+}
+
+
+.maxValue {
+    padding: 3px;
+    color: darkblue;
+    font-size: 90px;
+}
+
+.buttonsContainer {
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    justify-content: center;
+    border: 2px solid white;
+    color: white;
+    border-radius: 10px;
+    width: 250px;
+    height: 56px;
+    margin: 0px 20px 20px 20px;
+}
+
+.button {
+    margin: 9px;
+    width: 65px;
+    height: 36px;
+    background: darkslateblue;
+    border-radius: 5px;
+    border: 1px solid white;
+    color: white;
+    font-size: 20px;
+}
+.button:active{
+    background: mediumpurple;
+    margin: 9px;
+    width: 65px;
+    height: 36px;
+    border-radius: 5px;
+    border: 1px solid white;
+    font-size: 20px;
+    color: grey;
+}
+.disabled {
+    margin: 9px;
+    width: 65px;
+    height: 36px;
+    background: darkslateblue;
+    border-radius: 5px;
+    border: 1px solid white;
+    font-size: 20px;
+    color: grey;
+}
+
+.input {
+    margin: 5px 5px 5px 15px ;
+    width: 80px;
+    height: 25px;
+    border: 1px solid mediumpurple;
+    vertical-align: bottom;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.panelInputValue{
+    font-size: 25px;
+    font-weight: 500;
+}
+.input:focus {
+    outline: 1px solid darkblue;
+}
+.error {
+    margin: 5px 5px 5px 15px ;
+    width: 80px;
+    height: 25px;
+    background: lightpink;
+    vertical-align: bottom;
+    border-radius: 5px;
+    text-align: center;
+    outline:  2px solid red;
+    border: 1px solid  lightpink;
+}
+.error:focus {
+    border: none;
+    outline: 2px solid red;
+}
+
+

@@ -1,26 +1,48 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import s from "./component/Counter.module.css";
+import {CounterPanel} from "./component/CounterPanel";
+import {CounterPanelSetter} from "./component/CounterPanelSetter";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    const [maxValue, setMaxValue] = useState<number>(5)
+    const [minValue, setMinValue] = useState<number>(0)
+    const [value, setValue] = useState(minValue)
+    const [error, setError] = useState<boolean>(false)
+    const [mode, setMode] = useState<boolean>(true)
+
+
+    return (
+        <div className="App">
+            {mode
+                ? <CounterPanel
+                    maxValue={maxValue}
+                    minValue={minValue}
+                    error={error}
+                    value={value}
+                    mode={mode}
+
+                    callbackForMaxValue={setMaxValue}
+                    callbackForMinValue={setMinValue}
+                    callbackForError={setError}
+                    callbackForValue={setValue}
+                    callbackForSettingMode={setMode}/>
+
+                : <CounterPanelSetter
+                    maxValue={maxValue}
+                    minValue={minValue}
+                    error={error}
+                    value={value}
+                    mode={mode}
+
+                    callbackForMaxValue={setMaxValue}
+                    callbackForMinValue={setMinValue}
+                    callbackForError={setError}
+                    callbackForValue={setValue}
+                    callbackForSettingMode={setMode}/>}
+        </div>
+    )
 }
 
 export default App;
