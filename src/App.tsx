@@ -8,13 +8,11 @@ function App() {
 
     const [mode, setMode] = useState<boolean>(true)
 
-
     return (
         <div className="App">
             {mode
                 ? <CounterPanel
                     settingMode={setMode}/>
-
                 : <CounterPanelSetter
                     settingMode={setMode}/>}
         </div>

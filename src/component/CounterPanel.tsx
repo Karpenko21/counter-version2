@@ -47,13 +47,28 @@ export const CounterPanel = (props: CounterPropsType) => {
         props.settingMode(false)
     }
 
+    const classNamePanel =  counterVariables.value === counterVariables.maxValue
+        ? s.maxValue
+        : s.value
+
+    const isInkDisabled = counterVariables.value === counterVariables.maxValue
+    const classNameInc = counterVariables.value === counterVariables.maxValue
+        ? s.disabled
+        : counterVariables.error
+            ? s.disabled
+            : s.button
+
+    const isResetDisabled = counterVariables.value === counterVariables.minValue
+    const classNameReset = counterVariables.value === counterVariables.minValue
+        ? s.disabled
+        : counterVariables.error
+            ? s.disabled
+            : s.button
+
     return (
         <div className={s.counter}>
             <div className={s.panel}>
-                <div className={
-                    counterVariables.value === counterVariables.maxValue
-                        ? s.maxValue
-                        : s.value}
+                <div className={classNamePanel}
                 >
                     {counterVariables.value}
                 </div>
@@ -61,20 +76,12 @@ export const CounterPanel = (props: CounterPropsType) => {
             <div className={s.buttonsContainer}>
                 <Button name={"Inc"}
                         callback={onClickIncHandler}
-                        disabled={counterVariables.value === counterVariables.maxValue}
-                        className={counterVariables.value === counterVariables.maxValue
-                            ? s.disabled
-                            : counterVariables.error
-                                ? s.disabled
-                                : s.button}/>
+                        disabled={isInkDisabled}
+                        className={classNameInc}/>
                 <Button name={"Reset"}
                         callback={onClickResetHandler}
-                        disabled={counterVariables.value === counterVariables.minValue}
-                        className={counterVariables.value === counterVariables.minValue
-                            ? s.disabled
-                            : counterVariables.error
-                                ? s.disabled
-                                : s.button}/>
+                        disabled={isResetDisabled}
+                        className={classNameReset}/>
                 <Button name={'Set'}
                         callback={ChangeValues}
                         className={s.button}/>
