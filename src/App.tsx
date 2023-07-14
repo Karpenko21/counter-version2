@@ -6,10 +6,6 @@ import {CounterPanelSetter} from "./component/CounterPanelSetter";
 
 function App() {
 
-    const [maxValue, setMaxValue] = useState<number>(5)
-    const [minValue, setMinValue] = useState<number>(0)
-    const [value, setValue] = useState(minValue)
-    const [error, setError] = useState<boolean>(false)
     const [mode, setMode] = useState<boolean>(true)
 
 
@@ -17,30 +13,10 @@ function App() {
         <div className="App">
             {mode
                 ? <CounterPanel
-                    maxValue={maxValue}
-                    minValue={minValue}
-                    error={error}
-                    value={value}
-                    mode={mode}
-
-                    callbackForMaxValue={setMaxValue}
-                    callbackForMinValue={setMinValue}
-                    callbackForError={setError}
-                    callbackForValue={setValue}
-                    callbackForSettingMode={setMode}/>
+                    settingMode={setMode}/>
 
                 : <CounterPanelSetter
-                    maxValue={maxValue}
-                    minValue={minValue}
-                    error={error}
-                    value={value}
-                    mode={mode}
-
-                    callbackForMaxValue={setMaxValue}
-                    callbackForMinValue={setMinValue}
-                    callbackForError={setError}
-                    callbackForValue={setValue}
-                    callbackForSettingMode={setMode}/>}
+                    settingMode={setMode}/>}
         </div>
     )
 }

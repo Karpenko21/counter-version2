@@ -1,44 +1,29 @@
 import React, {useEffect} from 'react';
 import s from "./Counter.module.css"
 import {Button} from "./Button";
+import {useDispatch, useSelector} from "react-redux";
+import {AppRootStateType} from "../state/store";
+import {clickIncAC, clickResetAC, CounterVariablesType} from "../state/counterReducer";
 
 
 export type CounterPropsType = {
-    value: number
-    maxValue: number
-    minValue: number
-    error: boolean
-    mode: boolean
-
-    callbackForValue: (value: number) => void
-    callbackForMaxValue: (maxValue: number) => void
-    callbackForMinValue: (minValue: number) => void
-    callbackForError: (error: boolean) => void
-    callbackForSettingMode: (b: boolean) => void;
+    settingMode: (b: boolean) => void;
 }
 
-export const CounterPanel: React.FC<CounterPropsType> = (
-    {
-        value,
-        maxValue,
-        minValue,
-        error,
+export const CounterPanel = (props: CounterPropsType) => {
 
-        callbackForValue,
-        callbackForMaxValue,
-        callbackForMinValue,
-        callbackForSettingMode,
-    }
-) => {
+    const counterVariables = useSelector<AppRootStateType, CounterVariablesType>(state => state.counterVariables)
+    const dispatch = useDispatch()
+
     const onClickIncHandler = () => {
-        callbackForValue(value + 1)
+        dispatch(clickIncAC())
     }
 
     const onClickResetHandler = () => {
-        callbackForValue(minValue)
+        dispatch(clickResetAC())
     }
 
-    useEffect(() => {
+/*    useEffect(() => {
         let storageMaxValueAsString = localStorage.getItem('counterMaxValue')
         let storageMinValueAsString = localStorage.getItem('counterMinValue')
         let storageValueAsString = localStorage.getItem('counterValue')
@@ -56,38 +41,38 @@ export const CounterPanel: React.FC<CounterPropsType> = (
             callbackForValue(storageValue)
         }
 
-    }, [])
+    }, [])*/
 
     const ChangeValues = () => {
-        callbackForSettingMode(false)
+        props.settingMode(false)
     }
 
     return (
         <div className={s.counter}>
             <div className={s.panel}>
                 <div className={
-                    value === maxValue
+                    counterVariables.value === counterVariables.maxValue
                         ? s.maxValue
                         : s.value}
                 >
-                    {value}
+                    {counterVariables.value}
                 </div>
             </div>
             <div className={s.buttonsContainer}>
                 <Button name={"Inc"}
                         callback={onClickIncHandler}
-                        disabled={value === maxValue}
-                        className={value === maxValue
+                        disabled={counterVariables.value === counterVariables.maxValue}
+                        className={counterVariables.value === counterVariables.maxValue
                             ? s.disabled
-                            : error
+                            : counterVariables.error
                                 ? s.disabled
                                 : s.button}/>
                 <Button name={"Reset"}
                         callback={onClickResetHandler}
-                        disabled={value === minValue}
-                        className={value === minValue
+                        disabled={counterVariables.value === counterVariables.minValue}
+                        className={counterVariables.value === counterVariables.minValue
                             ? s.disabled
-                            : error
+                            : counterVariables.error
                                 ? s.disabled
                                 : s.button}/>
                 <Button name={'Set'}
